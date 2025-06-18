@@ -243,32 +243,35 @@ export default function Home() {
 
         {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 xl:py-24">
-          {/* Title Section - Left Aligned */}
-          <div className="text-left mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
-            {/* Left-aligned Title Image */}
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <Image
-                src="/images/MILEY-COLLECTION.png"
-                alt="Miley Collection"
-                width={600}
-                height={150}
-                className="w-auto h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32"
-                priority
-              />
+          {/* Title & Carousel Wrapper - aligned */}
+          <div className="w-full max-w-6xl mx-auto">
+            {/* Title Section - Aligned with Carousel */}
+            <div className="mb-6 sm:mb-8 lg:mb-12 xl:mb-16 pl-2 sm:pl-4">
+              {/* Title Image */}
+              <div className="mb-8 sm:mb-12 lg:mb-16">
+                <Image
+                  src="/images/MILEY-COLLECTION.png"
+                  alt="Miley Collection"
+                  width={600}
+                  height={150}
+                  className="w-auto h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32"
+                  priority
+                />
+              </div>
+
+              {/* Description Text */}
+              <div className="max-w-2xl">
+                <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed">
+                  From her days as a Disney superstar to the fearless rebel breaking societal norms, this collection
+                  captures the nostalgic echoes of her evolution
+                </p>
+              </div>
             </div>
 
-            {/* Left-aligned Description Text */}
-            <div className="max-w-2xl">
-              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed">
-                From her days as a Disney superstar to the fearless rebel breaking societal norms, this collection
-                captures the nostalgic echoes of her evolution
-              </p>
+            {/* Carousel Section */}
+            <div className="w-full bg-pink-900/30 backdrop-blur-sm rounded-xl p-2 sm:p-3 lg:p-4 xl:p-6">
+              <PinkSectionCarousel />
             </div>
-          </div>
-
-          {/* Carousel Section */}
-          <div className="w-full max-w-6xl mx-auto bg-pink-900/30 backdrop-blur-sm rounded-xl p-2 sm:p-3 lg:p-4 xl:p-6">
-            <PinkSectionCarousel />
           </div>
 
           {/* Images Section */}

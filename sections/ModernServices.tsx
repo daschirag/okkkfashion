@@ -4,7 +4,8 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-import { Palette, Scissors, Gem } from "lucide-react" // Ensure ArrowUpRight is imported
+import { Palette, Scissors, Gem } from "lucide-react"
+import SlideArrowButton from "@/components/Button" // Assuming this is the correct import for your button
 // Removed: import Image from "next/image" // No longer needed for the heading
 
 interface ServiceCard {
@@ -46,7 +47,7 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       title: "",
       description: "",
       icon: <Scissors className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
-      image: "/images/blueedyt.jpg",
+      image: "/images/blueedyt.png",
       color: "#ff6b9d",
       gradient: "from-pink-500/20 to-rose-500/20",
     },
@@ -55,7 +56,7 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       title: "",
       description: "",
       icon: <Palette className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
-      image: "/images/service-image.jpg",
+      image: "/images/service-image.png",
       color: "#c471ed",
       gradient: "from-purple-500/20 to-violet-500/20",
     },
@@ -121,8 +122,8 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       filter: "blur(0px)",
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
+        ease: [0.42, 0, 0.58, 1],
+      } as any,
     },
   }
 
@@ -133,8 +134,8 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
-      },
+        ease: [0.42, 0, 0.58, 1],
+      } as any,
     },
   }
 
@@ -144,8 +145,8 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       transition: {
         duration: 6,
         repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-      },
+        ease: [0.42, 0, 0.58, 1],
+      } as any,
     },
   }
 
@@ -156,10 +157,10 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
       transition: {
         duration: custom.duration,
         repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
+        ease: [0.42, 0, 0.58, 1],
         delay: custom.delay,
-      },
-    }),
+      } as any,
+    }) as any,
   }
 
   return (
@@ -177,10 +178,10 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
             key={particle.id}
             className="absolute rounded-full bg-white/10"
             style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
+              left: particle.x + '%',
+              top: particle.y + '%',
+              width: particle.size + 'px',
+              height: particle.size + 'px',
             }}
             variants={particleVariants}
             animate="animate"
@@ -392,61 +393,29 @@ const ModernServices = ({ contactRef, scrollToSection }: ModernServicesProps) =>
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
           transition={{ duration: 0.8, delay: 1.5 }}
         >
-          <motion.a
-            onClick={handleBookConsultation} // Use the existing handler
-            className={`
-             relative flex items-center justify-center
-             px-6 sm:px-8 py-3 sm:py-4 rounded-full
-             font-medium text-sm sm:text-base
-             overflow-hidden touch-manipulation
-             bg-black
-             border border-[#E91E63]
-             text-[#E91E63]
-             group
-           `}
-            whileHover="hover"
+          <motion.button
+            onClick={() => scrollToSection && contactRef && scrollToSection(contactRef)}
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors duration-300 rounded-sm text-sm sm:text-base touch-manipulation"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <span className="relative z-10 flex items-center">
-              Book Consultation
-              <motion.span
-                className="ml-2"
-                variants={{
-                  hover: { x: 4 }, // Animate icon movement on hover
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="sm:w-4 sm:h-4"
-                >
-                  <path d="M7 7h10v10" />
-                  <path d="M7 17 17 7" />
-                </svg>
-              </motion.span>
-            </span>
-            {/* Subtle background hover effect */}
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: "#E91E63",
-                opacity: 0,
-              }}
-              variants={{
-                hover: { opacity: 0.1 }, // Subtle background change on hover
-              }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            />
-          </motion.a>
+            <span>Book Consultation</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="sm:w-4 sm:h-4"
+            >
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </motion.button>
         </motion.div>
       </div>
 

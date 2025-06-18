@@ -30,7 +30,7 @@ export default function SlideArrowButton({
       {...props}
     >
       <div
-        className="absolute left-0 top-0 h-full w-0 rounded-md transition-all duration-300 ease-in-out group-hover:w-full"
+        className="absolute left-0 top-0 h-full w-0 transition-all duration-300 ease-in-out group-hover:w-full"
         style={{ backgroundColor: primaryColor }}
       />
       <span className="relative z-10 flex items-center gap-1 sm:gap-2 text-white transition-all duration-300">
